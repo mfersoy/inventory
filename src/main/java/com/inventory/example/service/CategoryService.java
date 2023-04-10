@@ -35,7 +35,12 @@ public class CategoryService {
         return categoryMap.map(categories);
     }
 
-    public CategoryDTO getCategoryById(Long id){
+    public Category geyByIdCategory(Long id){
+        Category category = categoryRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException(String.format(ErrorMessage.CATEGORY_NOT_FOUND)));
+        return category;
+    }
+
+    public CategoryDTO getById(Long id){
         Category category = categoryRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException(String.format(ErrorMessage.CATEGORY_NOT_FOUND)));
 
         return categoryMap.categoryToCategoryDTO(category);

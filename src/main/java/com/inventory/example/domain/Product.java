@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 
 @Getter
@@ -25,13 +27,11 @@ public class Product {
     @Column(nullable = false)
     private Integer number;
 
-//    @ManyToOne
-//    @JoinTable(name = "t_product_category", joinColumns = @JoinColumn(name ="product_id"),
-//            inverseJoinColumns = @JoinColumn(name = "category_id"))
-//    private Category categorySet;
-//
-//    @ManyToOne
-//    @JoinTable(name = "t_product_warehouse", joinColumns = @JoinColumn(name ="product_id"),
-//            inverseJoinColumns = @JoinColumn(name = "warehouse_id"))
-//    private Warehouse warehouse;
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private Category categories ;
+
+    @ManyToOne
+    @JoinColumn(name = "warehouse_id")
+    private Warehouse warehouses;
 }

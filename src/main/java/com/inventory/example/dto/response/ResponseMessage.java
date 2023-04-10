@@ -9,4 +9,8 @@ public class ResponseMessage {
     //Warehouser
     public static final String WAREHOUSER_SAVED_MESSAGE=    "Warehouser is saved";
 
+
+    //Prdouct
+    public static final String PRODUCT_SAVED_MESSAGE = "Porduct is saved";
+
 }
