@@ -1,5 +1,6 @@
 package com.inventory.example.controller;
 
+import com.inventory.example.domain.Warehouse;
 import com.inventory.example.dto.ProductDTO;
 import com.inventory.example.dto.request.ProductRequest;
 import com.inventory.example.dto.response.IResponse;
@@ -35,5 +36,19 @@ public class ProductController {
        return ResponseEntity.ok(productDTOS);
     }
 
+    @GetMapping("getById/{id}")
+    public ResponseEntity<ProductDTO> getById(@PathVariable Long id){
 
+        ProductDTO productDTO = productService.getById(id);
+        return ResponseEntity.ok(productDTO);
+    }
+
+    @PutMapping("/update/{productId}")
+    public ResponseEntity<IResponse> updateProduct(@PathVariable("productId") Long productId, @RequestBody @Valid ProductRequest productRequest, @RequestParam("warehouseId") Long warehouse,
+                                                   @RequestParam("categoryId") Long categoryId){
+
+        productService.updateProduct(productId,productRequest,warehouse,categoryId);
+        IResponse response = new IResponse(ResponseMessage.PRODUCT_UPDATED_MESSAGE,true);
+        return ResponseEntity.ok(response);
+    }
 }

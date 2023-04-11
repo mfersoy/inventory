@@ -13,4 +13,6 @@ public class ResponseMessage {
     //Prdouct
     public static final String PRODUCT_SAVED_MESSAGE = "Porduct is saved";
 
+    public static final String PRODUCT_UPDATED_MESSAGE = "Porduct  is updated";
+
 }

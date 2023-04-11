@@ -5,6 +5,8 @@ import com.inventory.example.domain.Product;
 import com.inventory.example.domain.Warehouse;
 import com.inventory.example.dto.ProductDTO;
 import com.inventory.example.dto.request.ProductRequest;
+import com.inventory.example.exception.ResourceNotFoundException;
+import com.inventory.example.exception.message.ErrorMessage;
 import com.inventory.example.map.ProductMap;
 import com.inventory.example.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,6 +51,38 @@ public class ProductService {
         List<Product> products = productRepository.findAll();
 
         return productMap.producsToProductDTOS(products);
+
+    }
+
+    public ProductDTO getById(Long id){
+
+        Product product = productRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException(String.format(ErrorMessage.PRODUCT_NOT_FOUND)));
+
+        return productMap.productToProductDTO(product);
+
+    }
+
+    public void updateProduct(Long productId,ProductRequest productRequest,Long warehouseId,Long categoryId){
+
+        Product product = productRepository.findById(productId).orElseThrow(() -> new ResourceNotFoundException(String.format(ErrorMessage.PRODUCT_NOT_FOUND)));
+
+        product.setName(productRequest.getName());
+        product.setNumber(product.getNumber());
+
+        Warehouse warehouse = warehouseService.getByIdWarehouse(warehouseId);
+        Category category = categoryService.geyByIdCategory(categoryId);
+
+        product.setCategories(category);
+        product.setWarehouses(warehouse);
+
+        productRepository.save(product);
+
+
+
+
+
+
+
 
     }
 }

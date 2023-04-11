@@ -22,7 +22,7 @@ public class ProductDTO {
 
     private Integer number;
 
-    private String categories ;
+    private Category categories ;
 
-    private String warehouses;
+    private Warehouse warehouses;
 }

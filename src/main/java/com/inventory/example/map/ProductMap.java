@@ -4,8 +4,7 @@ import com.inventory.example.domain.Product;
 import com.inventory.example.dto.ProductDTO;
 import com.inventory.example.dto.request.ProductRequest;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
-import org.springframework.data.jpa.repository.EntityGraph;
+
 
 import java.util.List;
 
